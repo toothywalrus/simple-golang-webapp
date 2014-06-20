@@ -9,7 +9,7 @@ import "github.com/gorilla/mux"
 
 func router() *mux.Router {
 	router := mux.NewRouter()
-	router.HandleFunc("/", IndexHandler().Methods("GET"))
+	router.HandleFunc("/", IndexHandler).Methods("GET")
 	return router
 }
 
@@ -22,7 +22,7 @@ func routerHandler(router *mux.Router) http.HandlerFunc {
 func IndexHandler(res http.ResponseWriter, req *http.Request) {
 	data, _ := json.Marshal("{'hello': 'wercker!}'")
 	res.Header().Set("Content-Type", "application/json; charset=utf-8")
-	res.write(data)
+	res.Write(data)
 }
 
 func main() {
